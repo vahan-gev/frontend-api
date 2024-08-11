@@ -1,6 +1,6 @@
 export default function NBAHeader() {
     return (
-        <nav className="px-20 bg-white z-50 nba-header">
+        <nav className="bg-white z-50 nba-header">
             <div className="flex items-center justify-between mx-auto max-w-screen-xxl px-4 py-2">
                 <a href="/" className="mr-2.5">
                     <img src="/assets/img/logo-nba.svg" alt="NBA Logo" className="w-14" />

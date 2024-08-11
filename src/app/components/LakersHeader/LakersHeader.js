@@ -3,7 +3,7 @@ import {FaEnvelope, FaFacebook, FaMessage, FaSnapchat, FaTiktok, FaXTwitter, FaY
 
 export default function LakersHeader() {
     return (
-        <div className="px-20 bg-[#232323]">
+        <div className="bg-[#232323]">
             <nav className="flex justify-between mx-auto max-w-screen-xxl px-4 py-2">
                 <div className="flex">
                     <a href="/" className="mr-2.5">
