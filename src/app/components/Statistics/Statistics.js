@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getPlayers } from "@/app/helpers/asyncmethods";
 import { getTopThree } from "@/app/helpers/methods";
-import { PlayerCard } from "@/app/components";
+import { Modal, PlayerCard } from "@/app/components";
 
 const STATS = ["points", "rebounds", "threepointers"];
 
@@ -13,12 +13,9 @@ export default function Statistics() {
         threepointers: []
     });
 
-    const [displayStates, setDisplayStates] = useState({
-        points: true,
-        rebounds: true,
-        threepointers: true
-    });
-
+    const [showModal, setShowModal] = useState(false);
+    const [neededPlayers, setNeededPlayers] = useState([]);
+    const [currentStat, setCurrentStat] = useState("");
     useEffect(() => {
         async function fetchPlayers() {
             const fetchedPlayers = {};
@@ -31,18 +28,22 @@ export default function Statistics() {
     }, []);
 
     const toggleDisplay = (stat) => {
-        setDisplayStates(prev => ({
-            ...prev,
-            [stat]: !prev[stat]
-        }));
+        setNeededPlayers(players[stat]);
+        setCurrentStat(stat);
+        toggleModal();
     };
 
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    }
+
     const getDisplayPlayers = (stat) => {
-        return displayStates[stat] ? getTopThree(players[stat]) : players[stat];
+        return getTopThree(players[stat]);
     };
 
     return (
         <div className="py-8 flex flex-col items-center gap-10 statistics-container">
+            {showModal && <Modal players={neededPlayers} closeAction={toggleModal} stat={currentStat} />}
             <h1 className="text-[2rem] font-black uppercase text-white">Statistics</h1>
             <div className="flex gap-8 cards-container">
                 {STATS.map(stat => (
@@ -50,7 +51,6 @@ export default function Statistics() {
                         key={stat}
                         title={stat}
                         players={getDisplayPlayers(stat)}
-                        showAll={!displayStates[stat]}
                         onToggle={() => toggleDisplay(stat)}
                     />
                 ))}
@@ -59,7 +59,7 @@ export default function Statistics() {
     );
 }
 
-function StatCard({ title, players, showAll, onToggle }) {
+function StatCard({ title, players, onToggle }) {
     return (
         <div className="flex gap-4 flex-col border-[#f2f2f2] border-[1px] py-4 px-6 rounded-xl items-center h-fit stat-card">
             <h1 className="text-lg font-black uppercase text-white">{title}</h1>
@@ -70,7 +70,7 @@ function StatCard({ title, players, showAll, onToggle }) {
                 className="flex py-2 px-8 bg-[#fcb724] rounded-full items-center justify-center text-white transition duration-300 hover:shadow-md cursor-pointer"
                 onClick={onToggle}
             >
-                <p className="text-sm">{showAll ? "Show Less" : "Show All"}</p>
+                <p className="text-sm">Show All</p>
             </button>
         </div>
     );
