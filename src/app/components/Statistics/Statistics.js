@@ -42,9 +42,9 @@ export default function Statistics() {
     };
 
     return (
-        <div className="py-4 flex flex-col items-center gap-10 mt-10">
-            <h1 className="text-[2rem] font-black uppercase text-[#232323]">Statistics</h1>
-            <div className="flex gap-8">
+        <div className="py-8 flex flex-col items-center gap-10 statistics-container">
+            <h1 className="text-[2rem] font-black uppercase text-white">Statistics</h1>
+            <div className="flex gap-8 cards-container">
                 {STATS.map(stat => (
                     <StatCard
                         key={stat}
@@ -61,8 +61,8 @@ export default function Statistics() {
 
 function StatCard({ title, players, showAll, onToggle }) {
     return (
-        <div className="flex gap-4 flex-col bg-[#f2f2f2] py-4 px-6 rounded-xl items-center h-fit">
-            <h1 className="text-lg font-black uppercase text-[#232323]">{title}</h1>
+        <div className="flex gap-4 flex-col border-[#f2f2f2] border-[1px] py-4 px-6 rounded-xl items-center h-fit stat-card">
+            <h1 className="text-lg font-black uppercase text-white">{title}</h1>
             {players?.map((player, index) => (
                 <PlayerCard key={index} player={player} />
             ))}

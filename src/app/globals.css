@@ -16,15 +16,28 @@
     width: auto;
 }
 
+.statistics-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../public/assets/img/image-3.jpeg");
+}
+
+.stat-card {
+    background: rgba(242, 242, 242, 0.2);
+}
+
 @media (min-width: 1024px) {
     .lakers-header-logo {
         height: 70px;
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1320px) {
     .lakers-header-icons {
         display: none;
     }
 }
 
+@media (max-width: 1100px) {
+    .cards-container {
+        flex-direction: column;
+    }
+}

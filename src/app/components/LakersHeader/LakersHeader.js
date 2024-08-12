@@ -1,5 +1,13 @@
-import {FaInstagram, FaSearch} from "react-icons/fa";
-import {FaEnvelope, FaFacebook, FaMessage, FaSnapchat, FaTiktok, FaXTwitter, FaYoutube} from "react-icons/fa6";
+import {
+    FaInstagram,
+    FaEnvelope,
+    FaFacebook,
+    FaSnapchat,
+    FaTiktok,
+    FaXTwitter,
+    FaYoutube
+} from "react-icons/fa6";
+import {IoMenuOutline, IoSearchOutline} from "react-icons/io5";
 
 export default function LakersHeader() {
     return (
@@ -67,8 +75,9 @@ export default function LakersHeader() {
                         </div>
                     </div>
                 </div>
-                <div className="flex items-center justify-center">
-                    <FaSearch color="white" size={25} />
+                <div className="flex items-center justify-center gap-4">
+                    <IoSearchOutline  color="white" size={25} />
+                    <IoMenuOutline className="lg:hidden md:block" color="white" size={30} />
                 </div>
             </nav>
         </div>
